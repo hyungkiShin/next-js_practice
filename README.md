@@ -52,3 +52,34 @@ nextjs 에서는 Link 컴포넌트에 감싸주면 된다.
 style 등등
 그래서 <a> 태그에 속성을 넣어주고 Link 태그에는 단순히 href 경로만 넣어주면 된다.
 ```
+
+### next 에서 style 적용하는 방법
+
+```
+기존에 알고있던 방법 2 가지
+style={{}} // inline 스타일 박는법
+css 파일에 class 작성후 import ./내가 만든css 파일
+
+style 을 적용하려던 태그에 className="내가만든class"
+
+새로 알게된 2가지
+1. css module 패턴. -> [file].module.css
+먼저 불러와주고
+import styles from [file].module.css
+
+className={styles.클래스네임}
+조건 부 style 작성시 className={`${style.클래스네임} 조건 ? ${style.클래스네임} : '' `}
+배열로 풀어내고 싶은 경우 className={`[ ${style.클래스네임} , 조건 ? ${style.클래스네임 } : '' ].join(" ")`}
+
+2. styled jsx (next 고유의 방법) 주의 ( 해당 컴포넌트에서만 scope 를 갖는다)
+<style jsx>{`
+ a {
+     text-decoration: none;
+ }
+ nav {
+     background-color: tomato;
+ }
+`}
+<style>
+
+```
